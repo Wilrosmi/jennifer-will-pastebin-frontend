@@ -1,0 +1,13 @@
+.individual-paste {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+#all-pastes {
+  padding: 10px;
+}
+
+#input-field {
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
