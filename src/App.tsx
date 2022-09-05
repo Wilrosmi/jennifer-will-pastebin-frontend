@@ -1,14 +1,13 @@
 import { greet } from "./utils/greet";
 import axios from "axios";
-import {useEffect, useState} from "react";
-import {IPost} from "./utils/types";
+import { useEffect, useState } from "react";
+import { IPost } from "./utils/types";
 import InputText from "./component/InputText";
 import ElementItem from "./component/ElementItem";
 
-export const url = 'http://localhost:4000';
+export const url = "http://localhost:4000";
 
 function App(): JSX.Element {
-
   const [posts, setPosts] = useState<IPost[]>([]);
 
   useEffect(() => {
@@ -23,7 +22,9 @@ function App(): JSX.Element {
     <>
       <InputText setPosts={setPosts} />
       <div id="all-pastes">
-        {posts.map(element => <ElementItem key={element.id} element={element} setPosts={setPosts} />)}
+        {posts.map((element) => (
+          <ElementItem key={element.id} element={element} setPosts={setPosts} />
+        ))}
       </div>
     </>
   );

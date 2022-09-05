@@ -1,14 +1,13 @@
-import {useState} from "react";
-import {url} from "../App";
+import { useState } from "react";
+import { url } from "../App";
 import axios from "axios";
-import {IPost} from "../utils/types";
+import { IPost } from "../utils/types";
 
 interface IProps {
-  setPosts: React.Dispatch<React.SetStateAction<IPost[]>>
+  setPosts: React.Dispatch<React.SetStateAction<IPost[]>>;
 }
 
-export default function InputText({setPosts}: IProps): JSX.Element {
-  
+export default function InputText({ setPosts }: IProps): JSX.Element {
   const [title, setTitle] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
@@ -21,7 +20,7 @@ export default function InputText({setPosts}: IProps): JSX.Element {
   }
 
   async function addTextToDb(): Promise<void> {
-    await axios.post(url, {message: message, title: title});
+    await axios.post(url, { message: message, title: title });
     const serverRes = (await axios.get(url)).data.data;
     setPosts(serverRes);
     setTitle("");
@@ -30,11 +29,27 @@ export default function InputText({setPosts}: IProps): JSX.Element {
 
   return (
     <div id="input-field">
-      <label id="title-label" htmlFor="titleInput">Title (optional): </label> 
-      <input id="title-input" name="titleInput" value={title} onChange={e => handleInputTitle(e)} />
-      <label id="message-label" htmlFor="messageInput">Message (required): </label>
-      <input id="message-input" name="messageInput" value={message} onChange={e => handleInputMessage(e)} />
-      <button id="submit-button" onClick={addTextToDb} >Submit</button>
+      <label id="title-label" htmlFor="titleInput">
+        Title (optional):{" "}
+      </label>
+      <input
+        id="title-input"
+        name="titleInput"
+        value={title}
+        onChange={(e) => handleInputTitle(e)}
+      />
+      <label id="message-label" htmlFor="messageInput">
+        Message (required):{" "}
+      </label>
+      <input
+        id="message-input"
+        name="messageInput"
+        value={message}
+        onChange={(e) => handleInputMessage(e)}
+      />
+      <button id="submit-button" onClick={addTextToDb}>
+        Submit
+      </button>
     </div>
-  )
+  );
 }
