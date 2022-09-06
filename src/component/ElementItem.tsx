@@ -2,6 +2,7 @@ import { IPost } from "../utils/types";
 import axios from "axios";
 import { url } from "../App";
 import { useState } from "react";
+import fillEmptyTitle from "../utils/fillEmptyTitle";
 
 interface IProps {
   element: IPost;
@@ -30,7 +31,7 @@ export default function ElementItem({
 
   return (
     <div className="individual-paste">
-      <p className="paste-title">{element.title}</p>
+      <p className="paste-title">{fillEmptyTitle(element.title)}</p>
       <p
         className="paste-message"
         onMouseEnter={() => setMessageIsShown(false)}
