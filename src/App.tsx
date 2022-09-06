@@ -9,6 +9,7 @@ export const url = "http://localhost:4000";
 
 function App(): JSX.Element {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [sideSummary, setSideSummary] = useState<string>("");
 
   useEffect(() => {
     async function getPosts(): Promise<void> {
@@ -19,14 +20,20 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <>
+    <div>
       <InputText setPosts={setPosts} />
       <div id="all-pastes">
         {posts.map((element) => (
-          <ElementItem key={element.id} element={element} setPosts={setPosts} />
+          <ElementItem
+            key={element.id}
+            element={element}
+            setPosts={setPosts}
+            setSideSummary={setSideSummary}
+          />
         ))}
       </div>
-    </>
+      <p className="side-summary">{sideSummary}</p>
+    </div>
   );
 }
 
