@@ -8,12 +8,16 @@ interface IProps {
   element: IPost;
   setPosts: React.Dispatch<React.SetStateAction<IPost[]>>;
   setSideSummary: React.Dispatch<React.SetStateAction<string>>;
+  setPageToDisplay: React.Dispatch<React.SetStateAction<string>>;
+  setIdOfPostToDisplay: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function ElementItem({
   element,
   setPosts,
   setSideSummary,
+  setIdOfPostToDisplay,
+  setPageToDisplay,
 }: IProps): JSX.Element {
   async function handleDelete(): Promise<void> {
     await axios.delete(`${url}/${element.id}`);
@@ -29,6 +33,11 @@ export default function ElementItem({
     setSideSummary(element.message);
   }
 
+  function handleViewComment(): void {
+    setIdOfPostToDisplay(element.id);
+    setPageToDisplay("individual post");
+  }
+
   return (
     <div className="individual-paste">
       <p className="paste-title">{fillEmptyTitle(element.title)}</p>
@@ -41,6 +50,9 @@ export default function ElementItem({
         {messageIsShown ? element.message : "Click to expand the message!"}
       </p>
       <p className="paste-date">{element.post_date}</p>
+      <button className="comment-button" onClick={handleViewComment}>
+        View Post and Comments
+      </button>
       <button className="delete-button" onClick={handleDelete}>
         Delete
       </button>
