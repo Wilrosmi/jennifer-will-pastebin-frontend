@@ -1,0 +1,34 @@
+.individual-paste {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) 0.5fr;
+  row-gap: 20px;
+  column-gap: 20px;
+  height: 20vh;
+  font-size: 2.5vh;
+}
+
+.paste-message {
+  overflow: hidden;
+}
+
+#all-pastes {
+  padding: 10px;
+  width: 70%;
+}
+
+#input-field {
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+
+.delete-button {
+  height: 50%;
+  width: 50%;
+}
+
+.side-summary {
+  position: absolute;
+  width: 20%;
+  left: 72vw;
+  top: 10vh;
+}
