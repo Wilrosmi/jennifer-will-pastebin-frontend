@@ -6,7 +6,8 @@ import ElementItem from "./component/ElementItem";
 import IndividualPostPage from "./component/IndividualPostPage";
 import findPostFromId from "./utils/findPostFromId";
 
-export const url = "http://localhost:4000";
+// Change to http://localhost:4000 if running server locally
+export const url = "https://jennifer-will-pastebin-backend.herokuapp.com";
 
 function App(): JSX.Element {
   const [posts, setPosts] = useState<IPost[]>([]);
