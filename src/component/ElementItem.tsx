@@ -1,6 +1,7 @@
 import { IPost } from "../utils/types";
 import axios from "axios";
 import { url } from "../App";
+import { useState } from "react";
 
 interface IProps {
   element: IPost;
@@ -19,6 +20,8 @@ export default function ElementItem({
     setPosts(serverRes);
   }
 
+  const [messageIsShown, setMessageIsShown] = useState<boolean>(true);
+
   function clickForSideSummary(
     setSideSummary: React.Dispatch<React.SetStateAction<string>>
   ): void {
@@ -30,9 +33,11 @@ export default function ElementItem({
       <p className="paste-title">{element.title}</p>
       <p
         className="paste-message"
+        onMouseEnter={() => setMessageIsShown(false)}
+        onMouseLeave={() => setMessageIsShown(true)}
         onClick={() => clickForSideSummary(setSideSummary)}
       >
-        {element.message}
+        {messageIsShown ? element.message : "Click to expand the message!"}
       </p>
       <p className="paste-date">{element.post_date}</p>
       <button className="delete-button" onClick={handleDelete}>
