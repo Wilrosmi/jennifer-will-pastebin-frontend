@@ -1,6 +1,4 @@
 import { IPost } from "../utils/types";
-import axios from "axios";
-import { url } from "../App";
 import { useState } from "react";
 import fillEmptyTitle from "../utils/fillEmptyTitle";
 import handleDelete from "../utils/handleDelete";
