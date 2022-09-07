@@ -3,18 +3,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { url } from "../App";
 import Comment from "./Comment";
+import handleDelete from "../utils/handleDelete";
 
 //Maybe change postToDisplay and idPostToDisplay if theyre confusing
 interface IProps {
   postToDisplay: IPost;
   setPageToDisplay: React.Dispatch<React.SetStateAction<string>>;
   setIdPostToDisplay: React.Dispatch<React.SetStateAction<number>>;
+  setPosts: React.Dispatch<React.SetStateAction<IPost[]>>;
 }
 
 export default function IndividualPostPage({
   postToDisplay,
   setPageToDisplay,
   setIdPostToDisplay,
+  setPosts,
 }: IProps): JSX.Element {
   const [commentList, setCommentList] = useState<IComment[]>([]);
   const [typeComment, setTypeComment] = useState<string>("");
@@ -47,11 +50,17 @@ export default function IndividualPostPage({
     setTypeComment("");
   }
 
+  async function handleClickDelete(): Promise<void> {
+    const updatedData = await handleDelete(postToDisplay.id);
+    setPosts(updatedData);
+    setPageToDisplay("homepage");
+  }
   return (
     <div>
       <p>{postToDisplay.title}</p>
       <p>{postToDisplay.message}</p>
       <p>{postToDisplay.post_date}</p>
+      <button onClick={handleClickDelete}>Delete Post</button>
       <div className="all-comments">
         {commentList.map((comment) => (
           <Comment
