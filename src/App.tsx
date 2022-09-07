@@ -8,9 +8,9 @@ import findPostFromId from "./utils/findPostFromId";
 import EditInput from "./component/EditInput";
 
 // Change to http://localhost:4000 if running server locally
-export const url = "http://localhost:4000";
+// export const url = "http://localhost:4000";
 
-// export const url = "https://jennifer-will-pastebin-backend.herokuapp.com";
+export const url = "https://jennifer-will-pastebin-backend.herokuapp.com";
 
 function App(): JSX.Element {
   const [posts, setPosts] = useState<IPost[]>([]);
