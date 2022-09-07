@@ -1,8 +1,7 @@
 import { IPost } from "../utils/types";
-import axios from "axios";
-import { url } from "../App";
 import { useState } from "react";
 import fillEmptyTitle from "../utils/fillEmptyTitle";
+import handleDelete from "../utils/handleDelete";
 
 interface IProps {
   element: IPost;
@@ -10,6 +9,7 @@ interface IProps {
   setSideSummary: React.Dispatch<React.SetStateAction<string>>;
   setPageToDisplay: React.Dispatch<React.SetStateAction<string>>;
   setIdOfPostToDisplay: React.Dispatch<React.SetStateAction<number>>;
+  setEditPost: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function ElementItem({
@@ -18,13 +18,8 @@ export default function ElementItem({
   setSideSummary,
   setIdOfPostToDisplay,
   setPageToDisplay,
+  setEditPost,
 }: IProps): JSX.Element {
-  async function handleDelete(): Promise<void> {
-    await axios.delete(`${url}/${element.id}`);
-    const serverRes = (await axios.get(url)).data.data;
-    setPosts(serverRes);
-  }
-
   const [messageIsShown, setMessageIsShown] = useState<boolean>(true);
 
   function clickForSideSummary(
@@ -36,6 +31,16 @@ export default function ElementItem({
   function handleViewComment(): void {
     setIdOfPostToDisplay(element.id);
     setPageToDisplay("individual post");
+  }
+
+  async function handleClickDelete(): Promise<void> {
+    const updatedData = await handleDelete(element.id);
+    setPosts(updatedData);
+  }
+
+  async function handleEditPost(): Promise<void> {
+    setEditPost(element.id);
+    setSideSummary("");
   }
 
   return (
@@ -53,7 +58,10 @@ export default function ElementItem({
       <button className="comment-button" onClick={handleViewComment}>
         View Post and Comments
       </button>
-      <button className="delete-button" onClick={handleDelete}>
+      <button className="edit-button" onClick={handleEditPost}>
+        Edit Post
+      </button>
+      <button className="delete-button" onClick={handleClickDelete}>
         Delete
       </button>
     </div>

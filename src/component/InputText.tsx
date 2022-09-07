@@ -20,11 +20,15 @@ export default function InputText({ setPosts }: IProps): JSX.Element {
   }
 
   async function addTextToDb(): Promise<void> {
-    await axios.post(url, { message: message, title: title });
-    const serverRes = (await axios.get(url)).data.data;
-    setPosts(serverRes);
-    setTitle("");
-    setMessage("");
+    try {
+      await axios.post(url, { message: message, title: title });
+      const serverRes = (await axios.get(url)).data.data;
+      setPosts(serverRes);
+      setTitle("");
+      setMessage("");
+    } catch (error) {
+      window.alert("Need a message body!");
+    }
   }
 
   return (
