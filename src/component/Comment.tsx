@@ -5,11 +5,20 @@ import { url } from "../App";
 interface IProps {
   commentData: IComment;
   setCommentList: React.Dispatch<React.SetStateAction<IComment[]>>;
+  setTypeComment: React.Dispatch<React.SetStateAction<string>>;
+  setCreateOrEdit: React.Dispatch<
+    React.SetStateAction<{
+      postOrPut: 0 | 1;
+      comment: IComment;
+    }>
+  >;
 }
 
 export default function Comment({
   commentData,
   setCommentList,
+  setTypeComment,
+  setCreateOrEdit,
 }: IProps): JSX.Element {
   async function handleDeleteComment(): Promise<void> {
     await axios.delete(
@@ -20,10 +29,16 @@ export default function Comment({
     setCommentList(dbres);
   }
 
+  async function handleEditComment(): Promise<void> {
+    setTypeComment(commentData.comment);
+    setCreateOrEdit({ postOrPut: 1, comment: commentData });
+  }
+
   return (
     <div>
       <p>{commentData.comment}</p>
-      <p>{commentData.time}</p>
+      <p>{commentData.time.slice(0, 10)}</p>
+      <button onClick={handleEditComment}>Edit Comment</button>
       <button onClick={handleDeleteComment}>Delete</button>
     </div>
   );
