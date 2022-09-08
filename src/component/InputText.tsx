@@ -42,8 +42,9 @@ export default function InputText({ setPosts }: IProps): JSX.Element {
         value={title}
         onChange={(e) => handleInputTitle(e)}
       />
+      <p></p>
       <label id="message-label" htmlFor="messageInput">
-        Message (required):{" "}
+        Paste Message Here (required):{" "}
       </label>
       <input
         id="message-input"
@@ -51,6 +52,7 @@ export default function InputText({ setPosts }: IProps): JSX.Element {
         value={message}
         onChange={(e) => handleInputMessage(e)}
       />
+      <p></p>
       <button id="submit-button" onClick={addTextToDb}>
         Submit
       </button>

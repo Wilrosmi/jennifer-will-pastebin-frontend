@@ -1,10 +1,22 @@
+.title {
+  position: relative;
+  left: 15vw;
+}
+
 .individual-paste {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr)) 1fr;
-  row-gap: 20px;
+  grid-row-gap: 20px;
   column-gap: 10px;
   height: 20vh;
   font-size: 2.5vh;
+  border-top: 20px solid white;
+  border-left: 20px solid white;
+  border-right: 20px solid white;
+  overflow: hidden;
+  background-color: rgb(224, 234, 247);
+  justify-items: center;
+  align-items: top;
 }
 
 .paste-message {
@@ -13,24 +25,58 @@
 
 #all-pastes {
   padding: 10px;
-  width: 80%;
+  width: 75%;
 }
 
 #input-field {
   padding: 15px;
   border-bottom: 1px solid black;
+  font-size: 2.9vh;
+  background-color: rgb(240, 242, 255);
+  position: relative;
+  width: 69%;
+  left: 4vh;
 }
 
-.delete-button,
-.comment-button,
 .edit-button {
   height: 40%;
   width: 80%;
+  background-color: white;
+  border-color: white;
+  grid-column: 5;
+  align-self: center;
+}
+
+.delete-button {
+  height: 40%;
+  width: 80%;
+  background-color: white;
+  border-color: white;
+  grid-column: 6;
+  align-self: center;
+}
+
+.comment-button {
+  height: 40%;
+  width: 80%;
+  background-color: white;
+  border-color: white;
+  grid-column: 4;
+  align-self: center;
+}
+
+#submit-button {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(255, 255, 255);
+  font-size: 2.9vh;
+  padding: 15px;
+  color: Black;
+  font-weight: bolder;
 }
 
 .side-summary {
   position: absolute;
   width: 20%;
-  left: 78vw;
-  top: 10vh;
+  left: 76vw;
+  top: 37vh;
 }
