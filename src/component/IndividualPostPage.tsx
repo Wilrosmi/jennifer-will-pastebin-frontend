@@ -19,8 +19,19 @@ export default function IndividualPostPage({
   setIdPostToDisplay,
   setPosts,
 }: IProps): JSX.Element {
+  const commentPlaceholder = {
+    comment: "",
+    comment_id: NaN,
+    time: "",
+    post_id: 0,
+  };
+
   const [commentList, setCommentList] = useState<IComment[]>([]);
   const [typeComment, setTypeComment] = useState<string>("");
+  const [createOrEdit, setCreateOrEdit] = useState<{
+    postOrPut: 0 | 1;
+    comment: IComment;
+  }>({ postOrPut: 0, comment: commentPlaceholder });
 
   useEffect(() => {
     async function getComments(): Promise<void> {
@@ -40,14 +51,27 @@ export default function IndividualPostPage({
   }
 
   async function addComment(): Promise<void> {
-    await axios.post(`${url}/${postToDisplay.id}/comments`, {
-      comment: typeComment,
-    });
-    const dbres: IComment[] = (
-      await axios.get(`${url}/${postToDisplay.id}/comments`)
-    ).data.data;
-    setCommentList(dbres);
-    setTypeComment("");
+    if (createOrEdit.postOrPut === 0) {
+      await axios.post(`${url}/${postToDisplay.id}/comments`, {
+        comment: typeComment,
+      });
+      const dbres: IComment[] = (
+        await axios.get(`${url}/${postToDisplay.id}/comments`)
+      ).data.data;
+      setCommentList(dbres);
+      setTypeComment("");
+    } else {
+      await axios.put(
+        `${url}/${createOrEdit.comment.post_id}/comments/${createOrEdit.comment.comment_id}`,
+        { comment: typeComment }
+      );
+      const dbres: IComment[] = (
+        await axios.get(`${url}/${createOrEdit.comment.post_id}/comments`)
+      ).data.data;
+      setCommentList(dbres);
+      setCreateOrEdit({ postOrPut: 0, comment: commentPlaceholder });
+      setTypeComment("");
+    }
   }
 
   async function handleClickDelete(): Promise<void> {
@@ -59,7 +83,7 @@ export default function IndividualPostPage({
     <div>
       <p>{postToDisplay.title}</p>
       <p>{postToDisplay.message}</p>
-      <p>{postToDisplay.post_date}</p>
+      <p>{postToDisplay.post_date.slice(0, 10)}</p>
       <button onClick={handleClickDelete}>Delete Post</button>
       <div className="all-comments">
         {commentList.map((comment) => (
@@ -67,6 +91,8 @@ export default function IndividualPostPage({
             key={comment.comment_id}
             commentData={comment}
             setCommentList={setCommentList}
+            setTypeComment={setTypeComment}
+            setCreateOrEdit={setCreateOrEdit}
           />
         ))}
       </div>

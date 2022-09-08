@@ -54,7 +54,7 @@ export default function ElementItem({
       >
         {messageIsShown ? element.message : "Click to expand the message!"}
       </p>
-      <p className="paste-date">{element.post_date}</p>
+      <p className="paste-date">{element.post_date.slice(0, 10)}</p>
       <button className="comment-button" onClick={handleViewComment}>
         View Post and Comments
       </button>
