@@ -139,7 +139,7 @@
   border-right: 20px solid white;
   text-align: center;
   align-items: center;
-  grid-row-gap: 80px;
+  grid-row-gap: 30px;
 }
 
 .postTitle {
@@ -191,7 +191,7 @@
   background-color: rgb(225, 245, 251);
   text-align: center;
   position: relative;
-  top: 28vh;
+  top: 18vh;
 }
 
 .editCommentButton {
@@ -245,7 +245,7 @@
   position: relative;
   font-size: 2.9vh;
   position: relative;
-  top: 26vh;
+  top: 15vh;
 }
 
 .addCommentTextBox:hover {
@@ -278,5 +278,5 @@
 
 .commentTitle {
   position: relative;
-  top: 25vh;
+  top: 15vh;
 }
