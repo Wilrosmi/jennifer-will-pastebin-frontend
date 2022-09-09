@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { url } from "../App";
 import axios from "axios";
 import { IPost } from "../utils/types";
 
 interface IProps {
   setPosts: React.Dispatch<React.SetStateAction<IPost[]>>;
+  postToEdit: IPost;
+  setEditPost: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function InputText({ setPosts }: IProps): JSX.Element {
+export default function InputText({
+  setPosts,
+  postToEdit,
+  setEditPost,
+}: IProps): JSX.Element {
   const [title, setTitle] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
@@ -19,13 +25,26 @@ export default function InputText({ setPosts }: IProps): JSX.Element {
     setMessage(e.target.value);
   }
 
+  useEffect(() => {
+    if (!isNaN(postToEdit.id)) {
+      setMessage(postToEdit.message);
+      setTitle(postToEdit.title ?? "");
+    }
+  }, [postToEdit]);
+
   async function addTextToDb(): Promise<void> {
     try {
-      await axios.post(url, { message: message, title: title });
+      if (isNaN(postToEdit.id)) {
+        await axios.post(url, { message: message, title: title });
+      } else {
+        const reqObject = { message: message, title: title };
+        await axios.put(`${url}/${postToEdit.id}`, reqObject);
+      }
       const serverRes = (await axios.get(url)).data.data;
       setPosts(serverRes);
-      setTitle("");
+      setEditPost(NaN);
       setMessage("");
+      setTitle("");
     } catch (error) {
       window.alert("Need a message body!");
     }

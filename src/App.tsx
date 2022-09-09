@@ -5,7 +5,6 @@ import InputText from "./component/InputText";
 import ElementItem from "./component/ElementItem";
 import IndividualPostPage from "./component/IndividualPostPage";
 import findPostFromId from "./utils/findPostFromId";
-import EditInput from "./component/EditInput";
 
 // Change to http://localhost:4000 if running server locally
 // export const url = "http://localhost:4000";
@@ -32,7 +31,11 @@ function App(): JSX.Element {
       <h1 className="title">Welcome to Will & Jennifer's Pastebin!</h1>
       {pageToDisplay === "homepage" ? (
         <div>
-          <InputText setPosts={setPosts} />
+          <InputText
+            setPosts={setPosts}
+            postToEdit={findPostFromId(posts, editPost)}
+            setEditPost={setEditPost}
+          />
           <div id="all-pastes">
             {posts.map((element) => (
               <ElementItem
@@ -46,15 +49,7 @@ function App(): JSX.Element {
               />
             ))}
           </div>
-          {isNaN(editPost) ? (
-            <p className="side-summary">{sideSummary}</p>
-          ) : (
-            <EditInput
-              post={findPostFromId(posts, editPost)}
-              setEditPost={setEditPost}
-              setPosts={setPosts}
-            />
-          )}
+          <p className="side-summary">{sideSummary}</p>
         </div>
       ) : (
         <IndividualPostPage
