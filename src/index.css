@@ -15,7 +15,7 @@
   border-left: 20px solid white;
   border-right: 20px solid white;
   overflow: hidden;
-  background-color: rgb(224, 234, 247);
+  background-color: rgb(225, 245, 251);
   justify-items: center;
   align-items: top;
   text-align: center;
@@ -32,9 +32,11 @@
 
 #input-field {
   padding: 15px;
-  border-bottom: 1px solid black;
+  border-top: 10px solid rgb(34, 130, 159);
+
+  border-bottom: 10px solid rgb(34, 130, 159);
   font-size: 2.9vh;
-  background-color: rgb(240, 242, 255);
+
   position: relative;
   width: 69%;
   left: 4vh;
@@ -159,6 +161,7 @@
   padding-top: 15px;
   padding-bottom: 25px;
   /* font-size: 2.5vh; */
+  border-bottom: 10px solid rgb(34, 130, 159);
 }
 
 .deleteButtonForPost {
@@ -188,7 +191,7 @@
   background-color: rgb(225, 245, 251);
   text-align: center;
   position: relative;
-  top: 12vh;
+  top: 18vh;
 }
 
 .editCommentButton {
@@ -242,7 +245,7 @@
   position: relative;
   font-size: 2.9vh;
   position: relative;
-  top: 10vh;
+  top: 15vh;
 }
 
 .addCommentTextBox:hover {
@@ -275,5 +278,5 @@
 
 .commentTitle {
   position: relative;
-  top: 10vh;
+  top: 15vh;
 }
