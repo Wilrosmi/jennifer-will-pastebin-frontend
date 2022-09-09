@@ -36,10 +36,17 @@ export default function Comment({
 
   return (
     <div>
-      <p>{commentData.comment}</p>
-      <p>{commentData.time.slice(0, 10)}</p>
-      <button onClick={handleEditComment}>Edit Comment</button>
-      <button onClick={handleDeleteComment}>Delete</button>
+      <div className="commentWrapper">
+        <p>{commentData.comment}</p>
+        <p>{commentData.time.slice(0, 10)}</p>
+
+        <button className="editCommentButton" onClick={handleEditComment}>
+          Edit Comment
+        </button>
+        <button className="deleteCommentButton" onClick={handleDeleteComment}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-.title {
+.title,
+.commentTitle {
   position: relative;
   left: 15vw;
 }
@@ -17,6 +18,7 @@
   background-color: rgb(224, 234, 247);
   justify-items: center;
   align-items: top;
+  text-align: center;
 }
 
 .paste-message {
@@ -47,7 +49,31 @@
   align-self: center;
 }
 
+.edit-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+  height: 40%;
+  width: 80%;
+  background-color: white;
+  border-color: white;
+  grid-column: 5;
+  align-self: center;
+}
+
 .delete-button {
+  height: 40%;
+  width: 80%;
+  background-color: white;
+  border-color: white;
+  grid-column: 6;
+  align-self: center;
+}
+
+.delete-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
   height: 40%;
   width: 80%;
   background-color: white;
@@ -65,9 +91,28 @@
   align-self: center;
 }
 
+.comment-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+  height: 40%;
+  width: 80%;
+  background-color: white;
+  border-color: white;
+  grid-column: 4;
+  align-self: center;
+}
+
 #submit-button {
-  background-color: rgb(255, 255, 255);
-  border-color: rgb(255, 255, 255);
+  font-size: 2.9vh;
+  padding: 15px;
+  color: Black;
+  font-weight: bolder;
+}
+
+#submit-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
   font-size: 2.9vh;
   padding: 15px;
   color: Black;
@@ -78,5 +123,157 @@
   position: absolute;
   width: 20%;
   left: 76vw;
-  top: 37vh;
+  top: 8vh;
+}
+
+.wholeCommentWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 100px);
+  width: 90%;
+  height: 20vh;
+  border-top: 10px solid rgb(34, 130, 159);
+  border-left: 20px solid white;
+  border-right: 20px solid white;
+  text-align: center;
+  align-items: center;
+  grid-row-gap: 30px;
+}
+
+.postTitle {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  font-size: 5vh;
+}
+
+.postDate {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  font-size: 3vh;
+}
+
+.postDisplayMessage {
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+  text-align: left;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  /* font-size: 2.5vh; */
+}
+
+.deleteButtonForPost {
+  width: 80%;
+  height: 50%;
+}
+
+.deleteButtonForPost:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  width: 80%;
+  color: black;
+  height: 50%;
+}
+
+.commentWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 100px);
+  grid-row-gap: 20px;
+  column-gap: 10px;
+  width: 90%;
+  height: 10vh;
+  border-top: 15px solid rgb(255, 255, 255);
+  border-left: 15px solid white;
+  border-right: 15px solid white;
+  background-color: rgb(225, 245, 251);
+  text-align: center;
+  position: relative;
+  top: 10vh;
+}
+
+.editCommentButton {
+  height: 40%;
+  width: 80%;
+  grid-column: 3/4;
+  align-self: center;
+  background-color: white;
+  border-color: white;
+}
+
+.editCommentButton:hover {
+  height: 40%;
+  width: 80%;
+  grid-column: 3/4;
+  align-self: center;
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.deleteCommentButton {
+  height: 40%;
+  width: 80%;
+  grid-column: 4/5;
+  align-self: center;
+  background-color: white;
+  border-color: white;
+}
+
+.deleteCommentButton:hover {
+  height: 40%;
+  width: 80%;
+  grid-column: 4/5;
+  align-self: center;
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.editSubmitHomepageButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 20px;
+  column-gap: 40px;
+  height: 5vh;
+  width: 91%;
+  left: 5vh;
+  position: relative;
+  font-size: 2.9vh;
+  position: relative;
+  top: 10vh;
+}
+
+.addCommentTextBox:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border: 2px solid #2225e9;
+}
+
+.submitButton {
+  width: 80%;
+  color: black;
+}
+.submitButton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  width: 80%;
+  color: black;
+}
+.homepageButton {
+  color: black;
+  width: 80%;
+}
+
+.homepageButton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  color: black;
+  width: 80%;
+}
+
+.commentTitle {
+  position: relative;
+  top: 10vh;
 }
