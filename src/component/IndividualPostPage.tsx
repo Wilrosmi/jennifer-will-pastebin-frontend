@@ -51,26 +51,30 @@ export default function IndividualPostPage({
   }
 
   async function addComment(): Promise<void> {
-    if (createOrEdit.postOrPut === 0) {
-      await axios.post(`${url}/${postToDisplay.id}/comments`, {
-        comment: typeComment,
-      });
-      const dbres: IComment[] = (
-        await axios.get(`${url}/${postToDisplay.id}/comments`)
-      ).data.data;
-      setCommentList(dbres);
-      setTypeComment("");
-    } else {
-      await axios.put(
-        `${url}/${createOrEdit.comment.post_id}/comments/${createOrEdit.comment.comment_id}`,
-        { comment: typeComment }
-      );
-      const dbres: IComment[] = (
-        await axios.get(`${url}/${createOrEdit.comment.post_id}/comments`)
-      ).data.data;
-      setCommentList(dbres);
-      setCreateOrEdit({ postOrPut: 0, comment: commentPlaceholder });
-      setTypeComment("");
+    try {
+      if (createOrEdit.postOrPut === 0) {
+        await axios.post(`${url}/${postToDisplay.id}/comments`, {
+          comment: typeComment,
+        });
+        const dbres: IComment[] = (
+          await axios.get(`${url}/${postToDisplay.id}/comments`)
+        ).data.data;
+        setCommentList(dbres);
+        setTypeComment("");
+      } else {
+        await axios.put(
+          `${url}/${createOrEdit.comment.post_id}/comments/${createOrEdit.comment.comment_id}`,
+          { comment: typeComment }
+        );
+        const dbres: IComment[] = (
+          await axios.get(`${url}/${createOrEdit.comment.post_id}/comments`)
+        ).data.data;
+        setCommentList(dbres);
+        setCreateOrEdit({ postOrPut: 0, comment: commentPlaceholder });
+        setTypeComment("");
+      }
+    } catch {
+      window.alert("Comment cannot be empty");
     }
   }
 
