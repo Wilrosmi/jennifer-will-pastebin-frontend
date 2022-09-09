@@ -29,6 +29,7 @@ function App(): JSX.Element {
 
   return (
     <div>
+      <h1 className="title">Welcome to Will & Jennifer's Pastebin!</h1>
       {pageToDisplay === "homepage" ? (
         <div>
           <InputText setPosts={setPosts} />

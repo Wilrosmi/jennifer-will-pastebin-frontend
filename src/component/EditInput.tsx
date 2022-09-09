@@ -42,7 +42,7 @@ export default function EditInput({
         value={editMessage}
         onChange={(e) => setEditMessage(e.target.value)}
       ></input>
-      <button onClick={handleSubmitEdits}>Submit</button>
+      <button onClick={handleSubmitEdits}> Submit </button>
     </>
   );
 }

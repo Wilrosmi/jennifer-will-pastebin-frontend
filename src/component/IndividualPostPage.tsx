@@ -81,10 +81,33 @@ export default function IndividualPostPage({
   }
   return (
     <div>
-      <p>{postToDisplay.title}</p>
-      <p>{postToDisplay.message}</p>
-      <p>{postToDisplay.post_date.slice(0, 10)}</p>
-      <button onClick={handleClickDelete}>Delete Post</button>
+      <div className="wholeCommentWrapper">
+        <p className="postTitle">{postToDisplay.title}</p>
+
+        <p className="postDisplayMessage">{postToDisplay.message}</p>
+
+        <p className="postDate">{postToDisplay.post_date.slice(0, 10)}</p>
+
+        <button className="deleteButtonForPost" onClick={handleClickDelete}>
+          Delete Post
+        </button>
+      </div>
+      <p></p>
+      <h1 className="commentTitle">Comments</h1>
+      <div className="editSubmitHomepageButtons">
+        <input
+          className="addCommentTextBox"
+          onChange={(e) => setTypeComment(e.target.value)}
+          value={typeComment}
+          placeholder="Add comment!"
+        />
+        <button className="submitButton" onClick={addComment}>
+          Submit
+        </button>
+        <button className="homepageButton" onClick={backToHomepage}>
+          Homepage
+        </button>
+      </div>
       <div className="all-comments">
         {commentList.map((comment) => (
           <Comment
@@ -96,13 +119,7 @@ export default function IndividualPostPage({
           />
         ))}
       </div>
-      <input
-        onChange={(e) => setTypeComment(e.target.value)}
-        value={typeComment}
-        placeholder="Add comment!"
-      />
-      <button onClick={addComment}>Submit</button>
-      <button onClick={backToHomepage}>Homepage</button>
+      <p></p>
     </div>
   );
 }
